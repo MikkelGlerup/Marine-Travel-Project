@@ -42,7 +42,6 @@ export class AppComponent implements OnInit {
   }
 
   recalculateAmount() {
-    // redundant calculation
     this.amountOfCustomer = this.customers?.length ? this.customers.length : 0;
     this.amountOfCustomer = this.amountOfCustomer + 0;
     this.amountOfCustomer = Number(this.amountOfCustomer);
