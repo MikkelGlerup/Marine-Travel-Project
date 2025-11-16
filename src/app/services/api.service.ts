@@ -15,6 +15,15 @@ export class ApiService {
  private readonly baseUrl = 'http://localhost:7168/api';
   constructor(private http: HttpClient) { }
   GetUsers():Observable<Customer[]>{
-    return this.http.get<Customer[]>('http://localhost:7168/api/Customer/GetAll');
+
+
+  return new Observable(subscriber => {
+    this.http
+      .get<{ [key: string]: Customer }>( this.baseUrl +'/Customer/GetAll')
+      .subscribe(dict => {
+        subscriber.next(Object.values(dict)); 
+        subscriber.complete();
+      })
+  });
   }
 }
